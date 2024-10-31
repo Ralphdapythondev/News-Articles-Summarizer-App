@@ -2,9 +2,9 @@ name: Run Scripts
 
 on:
   schedule:
-    # Run newday.py every day.
+    # Run newday.py every day at 2:30 AM UTC.
     - cron: '30 02 * * *'
-    
+  workflow_dispatch:  # Allows for manual trigger
 
 jobs:
   build:
@@ -38,10 +38,11 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.email "akanksha.wrk@gmail.com"
-          git config --local user.name "akanksha1131"
+          git config --local user.email "ralphsmashthecomputer@gmail.com"
+          git config --local user.name "Ralphdapythondev"
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "Updated logs" --allow-empty)
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
