@@ -18,7 +18,7 @@ pandas==2.1.1
 streamlit==1.33.0
 
 # Optional translation modules (use one as needed)
-# googletrans==4.0.0-rc1  # For translation; known issues
+googletrans==4.0.0-rc1  # For translation; known issues
 deep-translator==1.10.1   # Recommended alternative to googletrans
 
 # Text-to-Speech for summaries
