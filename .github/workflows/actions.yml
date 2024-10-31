@@ -42,10 +42,10 @@ jobs:
           git config --local user.email "ralphsmashthecomputer@gmail.com"
           git config --local user.name "Ralphdapythondev"
           git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "Updated logs" --allow-empty)
-          
+          git diff-index --quiet HEAD || git commit -a -m "Updated logs"
+
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push origin main
