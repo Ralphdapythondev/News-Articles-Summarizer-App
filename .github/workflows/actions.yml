@@ -2,24 +2,24 @@ name: Run Scripts
 
 on:
   schedule:
-    - cron: '30 02 * * *'
-    - cron: '36 10 * * *'
-  workflow_dispatch:
+    # Run newday.py every day.
+    - cron: '09 10 * * *'
+    
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
-        uses: Ralphdapythondev/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: Ralphdapythondev/setup-node@v4
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Setup Python
-        uses: Ralphdapythondev/setup-python@v5
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
 
@@ -30,7 +30,7 @@ jobs:
       - name: Install other requirements
         run: pip install -r requirements.txt
 
-      - name: Execute update_BoW.py
+      - name: Execute update_BoW.py (every day)
         run: python update_BoW.py
 
       - name: Execute newday.py
@@ -38,13 +38,12 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.email "ralphsmashthecomputer@gmail.com"
-          git config --local user.name "Ralphdaypythondev"
+          git config --local user.email "akanksha.wrk@gmail.com"
+          git config --local user.name "akanksha1131"
           git add -A
-          git diff-index --quiet HEAD || git commit -a -m "Updated logs"
-
+          git diff-index --quiet HEAD || (git commit -a -m "Updated logs" --allow-empty)
       - name: Push changes
-        uses: Ralphdapythondev/github-push-action@master
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
