@@ -3,7 +3,7 @@ name: Run Scripts
 on:
   schedule:
     # Run newday.py every day.
-    - cron: '09 10 * * *'
+    - cron: '11 10 * * *'
     
 
 jobs:
@@ -38,8 +38,8 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.email "akanksha.wrk@gmail.com"
-          git config --local user.name "akanksha1131"
+          git config --local user.email "ralphsmashthecomputer@gmail.com"
+          git config --local user.name "Ralphdapythondev"
           git add -A
           git diff-index --quiet HEAD || (git commit -a -m "Updated logs" --allow-empty)
       - name: Push changes
